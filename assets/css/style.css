@@ -1,0 +1,101 @@
+/*Tout*/
+body {
+    background-color: #d4f0f0;
+    font-size: 14px;
+    width:auto; /*c'est plus joli comme ça :)*/
+}
+
+h1 {
+    font-size: 99%;
+}
+
+h2 {
+    font-size: 60%;
+}
+
+table, th {
+    border: 3px solid #8fcaca;
+    border-collapse: collapse;
+    padding: 3px;
+}
+
+/*Page*/
+#page {
+    width: auto; /*largeur de la boîte*/
+    /*border: 5px solid #8fcaca; bordure - dans encadre*/
+    padding: 50px; /*taille des marges intérieures*/
+    margin: auto; /*auto pour centrer, taille des marges extérieures*/
+    /*background-color: white - dans encadre*/
+}
+
+/*Menu*/
+.menu{
+    width:auto;
+    overflow:hidden;
+    height:40px
+}
+
+.menu ul {
+    list-style-type: none;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    float: left;
+    background-color: #d4f0f0
+}
+
+.menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: Trebuchet, sans-serif;
+}
+
+.menu li a:hover {
+    background-color: #a2e1db;
+}
+
+.menupageactive {
+    background-color: #8fcaca;
+}
+
+/*Titre*/
+.titre {
+    position:relative;
+    background-color:white;
+    border: 5px solid #8fcaca;
+    text-align: left;
+    padding:10px;
+}
+
+.titre img {
+    float:right;
+    padding-top: 5px;
+    width:100px;
+    height:"auto";
+}
+
+/*Encadré blanc, texte centré, bordure foncée*/
+.encadre {
+    background-color: white;
+    text-align: center;
+    border: 5px solid #8fcaca;
+}
+
+/*Entête*/
+.entete {
+    text-align: left;
+}
+
+/*About Me*/
+#aboutme {
+    text-align: left;
+}
