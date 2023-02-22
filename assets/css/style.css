@@ -29,7 +29,7 @@ table, th {
 }
 
 /*Menu*/
-.menu{
+.menu {
     width:auto;
     overflow:hidden;
     height:40px
@@ -63,7 +63,7 @@ table, th {
     background-color: #a2e1db;
 }
 
-.menupageactive {
+.active {
     background-color: #8fcaca;
 }
 
