@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+        <title>Site de Céline Rousseau</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/celinepp.png">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <script src="assets/js/main.js"></script>
+    </head>
+
+    <body>
+        <!--Menu & Titre-->
+        <div id="navbar"></div>
+        <!--Fin menu & titre-->
+
+        <!--Page-->
+        <div id="page" class="encadre">
+            <h1>Exercices séance 5</h1>
+            <h2>Exercice 1</h2>
+            <br/>
+            <p>Créer dans la fonction "exercice1" un tableau quelconque. Retirez sa dernière valeur et mettez-là au début. Le résultat final doit être intégré au paragraphe d'identifiant "exercice1Resultat".</p>
+            <br/>
+            <button onclick="exercice1()">Retirer le dernier élément et le mettre au début.</button>
+            <br/>
+            <p id="exercice1Resultat"></p>
+
+            <h2>Exercice 2</h2>
+            <br/>
+            <p>Découpez le texte suivants en mots (selon des espaces) puis transformez chaque mot en majuscule à l'aide d'une fonction.</p>
+            <p>Écrivez les résultat dans le paragraphe d'identifiant "exercice2Resultat".</p>
+            <br/>
+            <textarea id="texteExercice2" name="mon_texte" rows="10" cols="50">Ici, on entre du texte qu'on va segmenter en "mots".</textarea>
+            <br/>
+            <button onclick="exercice2()">Segmenter le texte et transformer les mots en majuscule.</button>
+            <p id="exercice2Resultat"></p>
+
+            <h2>Exercice 3</h2>
+            <br/>
+            <p>Découpez le texte suivants en mots (selon des espaces) puis retirer les mots qui ont une taille de 3 ou moins.</p>
+            <p>Écrivez les résultat dans le paragraphe d'identifiant "exercice3Resultat".</p>
+            <br/>
+            <textarea id="texteExercice3" name="mon_texte" rows="10" cols="50">Ici, on entre du texte qu'on va segmenter en "mots".</textarea>
+            <br/>
+            <button onclick="exercice3()">Segmenter le texte et retirer les mot de taille 3 ou moins.</button>
+            <p id="exercice3Resultat"></p>
+
+            <h2>Exercice 4</h2>
+            <br/>
+            <p>Découpez le texte suivants en mots (selon des espaces) puis créer un tableau en utilisant la construction forEach.</p>
+            <br/>
+            <p>Pour créer le résultat final vous pouvez au choix :</p>
+            <ul>
+                <li>générer une chaîne de caractères ;</li>
+                <li>utiliser les méthodes "<a href="https://www.w3schools.com/jsref/met_document_createelement.asp">createElement</a>" et "<a href="https://www.w3schools.com/jsref/met_node_appendchild.asp">appendChild</a>".</li>
+            </ul>
+            <br/>
+            <p>Écrivez les résultat dans le div d'identifiant "exercice4Resultat".</p>
+            <br/>
+            <textarea id="texteExercice4" name="mon_texte" rows="10" cols="50">Ici, on entre du texte qu'on va segmenter en "mots".</textarea>
+            <br/>
+            <button onclick="exercice4()">Segmenter le texte dans un tableau.</button>
+            <div id="exercice4Resultat"></div>
+
+        </div>
+        <!--Fin page-->
+
+        <!--Footer-->
+        <div id="footer"></div>
+        <!--Fin footer-->
+    </body>
+</html>

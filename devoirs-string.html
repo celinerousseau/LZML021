@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+        <title>Site de Céline Rousseau</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/celinepp.png">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <script src="assets/js/main.js"></script>
+    </head>
+
+    <body>
+        <!--Menu & Titre-->
+        <div id="navbar"></div>
+        <!--Fin menu & titre-->
+
+        <!--Page-->
+        <div id="page" class="encadre">
+            <h1>Exercice 1 : récupérer des informations et concaténer des chaînes.</h1>
+
+            <p>Un &quot;formulaire&quot; pour rentrer vos prénom et nom.</p>
+            <p>Utilisez les méthodes javascript pour récupérer prénom, nom et nom complet. Mettre à jour le paragraphe #holder1.</p>
+            <p>Utilisez les méthodes de string pour concaténer prénom et nom.</p>
+
+            <label for="fname">Prénom :</label>
+            <input type="text" id="prenom" name="fname"><br><br>
+            <label for="lname">Nom :</label>
+            <input type="text" id="nomdefamille" name="lname"><br><br>
+            <button onclick="prenom()">prénom</button>
+            <button onclick="nomdefamille()">nom de famille</button>
+            <button onclick="nomcomplet()">nom complet</button>
+
+            <p id="holder1"></p>
+
+            <h1>Exercice 2 : récupérer des informations et concaténer des chaînes.</h1>
+
+            <p>On veut récupérer le texte de cette zone et le découper en mots à l'aide d'une expression régulière (regexp). Mettre à jour le paragraphe #holder2.</p>
+            <p>Utilisez les méthodes de string pour effectuer cette tâche.</p>
+
+            <label for="texte">Le texte à segmenter:<br/></label>
+
+            <textarea id="texte" name="mon_texte" rows="10" cols="50">Ici, on entre du texte qu'on va segmenter en "mots".</textarea>
+            <br/>
+            <button onclick="segmentText()">Segmenter le texte.</button>
+
+            <p id="holder2"></p>
+
+        </div>
+        <!--Fin page-->
+
+        <!--Footer-->
+        <div id="footer"></div>
+        <!--Fin footer-->
+    </body>
+</html>

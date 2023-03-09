@@ -1,19 +1,22 @@
 <!--Titre-->
-    <div class="titre">
-        <img src="assets/img/sorbonne-nouvelle.png" alt="Sorbonne Nouvelle logo">
-        <h1>Site de Céline Rousseau</h1>
-        <h2>Dans le cadre de la Licence Sciences du Langage, 3ème année</h2>
-    </div>
+<div class="titre">
+    <img src="assets/img/sorbonne-nouvelle.png" alt="Sorbonne Nouvelle logo">
+    <h1>Site de Céline Rousseau</h1>
+    <h2>Dans le cadre de la Licence Sciences du Langage, 3ème année</h2>
+</div>
 <!--Fin titre-->
 
 <!--Menu de navigation-->
-<div class="menu">
-    <ul>
-        <li><a href="index.html" data-page="accueil">Accueil</a></li>
-        <li><a href="outils.html" data-page="outils">Outils</a></li>
-        <li><a href="devoirs.html" data-page="devoirs">Devoirs</a></li>
-        <li><a href="apropos.html" data-page="apropos">A propos</a></li>
-    </ul>
+<div id="navbar">
+    <a href="index.html">Accueil</a>
+    <a href="outils.html">Outils</a>
+    <div class="dropdown">
+        <button class="dropbtn">Devoirs</button>
+        <div class="dropdown-content">
+            <a href="devoirs-string.html">String</a>
+            <a href="devoirs-array.html">Array</a>
+        </div>
+    </div>
+    <a href="apropos.html" data-page="apropos">A propos</a>
 </div>
-
 <!--Fin menu de navigation-->

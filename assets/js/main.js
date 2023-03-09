@@ -22,12 +22,6 @@ fetch("footer.html")
         document.getElementById("footer").innerHTML = data;
 });
 
-//devoirs
-function showDiv() {
-    var div = document.getElementById("devoirs-string");
-    div.style.display = "block";
-}
-
 //devoirs string
     // exercice 1
     function prenom() {
@@ -54,3 +48,38 @@ function showDiv() {
         var motsString = mots.join(", ");
         document.getElementById("holder2").innerHTML = motsString;
     }
+
+//devoirs array
+function exercice1() {
+  const arr = [1, 2, 3, 4, 5];
+  const last = arr.pop();
+  arr.unshift(last);
+  document.getElementById("exercice1Resultat").innerHTML = arr.toString();
+}
+
+function exercice2() {
+  const text = document.getElementById("texteExercice2").value;
+  const words = text.split(" ");
+  const uppercased = words.map((word) => word.toUpperCase());
+  document.getElementById("exercice2Resultat").innerHTML = uppercased.join(" ");
+}
+
+function exercice3() {
+  const text = document.getElementById("texteExercice3").value;
+  const words = text.split(" ");
+  const filtered = words.filter((word) => word.length > 3);
+  document.getElementById("exercice3Resultat").innerHTML = filtered.join(" ");
+}
+
+function exercice4() {
+  const text = document.getElementById("texteExercice4").value;
+  const words = text.split(" ");
+  const arr = [];
+  words.forEach((word) => {
+    const element = document.createElement("p");
+    const textNode = document.createTextNode(word);
+    element.appendChild(textNode);
+    arr.push(element);
+  });
+  document.getElementById("exercice4Resultat").append(...arr);
+}
