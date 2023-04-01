@@ -15,10 +15,65 @@
 
         <!--Page-->
         <div id="page" class="encadre">
-            <p>Cette page est en cours de construction !</p>
-			<iframe src="https://www.youtube.com/embed/OeS_f7a-D-E?autoplay=1"></iframe>
-     
-        </div> 
+            <h1>Analyse des données dans un fichier</h1>
+            <p>Vous trouverez sur cette page différents outils d'analyse de texte. <br>Pour afficher ou cacher l'aide, cliquez sur le bouton "Aide".</p>
+            <button onclick="afficher()">Aide</button>
+            <div style="display:none" id="aide">
+                <h1>Bienvenue sur l'aide !</h1>
+                <p>Le bouton <button onclick="javascript:void(0);">Outils surprise</button> permet d'afficher... un outils surprise &#128064;</p>
+                <p>Pour commencer, choisissez le fichier .txt duquel vous désirez analyser les données en cliquant sur le bouton <button onclick="javascript:void(0);">Choisir un fichier</button></p>
+                <p>Une alerte apparaîtra, vous proposant de segmenter le texte. 
+                <br />Cliquez sur "Ok" pour afficher et segmenter le texte. 
+                <br />Cliquez sur "Annuler" pour seulement afficher le texte.</p>
+                <p>Ne vous inquiétez pas, le bouton <button onclick="javascript:void(0);">Segmentation</button> vous permettra de segmenter le texte si vous avez changé d'avis !</p>
+                <small>Les opérations peuvent prendre du temps selon la taille du texte ! Merci de patienter.</small>
+                <p>Le texte chargé sera affiché en bas à gauche, et les analyses en bas à droite.</p>
+                <p>Le bouton <button onclick="javascript:void(0);">Dictionnaire</button> permet d'afficher le dictionnaire des mots les plus fréquents dans un tableau. 
+                <br />&#10071;Attention ! Le Dictionnaire ne s'affiche que si le texte a été segmenté.</p>
+            </div>
+
+            <div id="outils">
+                <button onclick=outilsSurprise()><span>Outils surprise</span></button>
+                <br />
+                <br />
+                <div>
+                    <label for="fileInput">Sélectionnez un fichier au format .txt:</label>
+                    <input id="fileInput" type="file" accept="text/plain" name="Fichier (.txt)"/>
+                </div>
+                <br />
+                <div id="textlogger"></div>
+                    <p>
+                        <small>
+                            <label for="delimID" class="mylabel">Délimiteur(s)</label>
+                            <input type="text" value=" ,;’'~|&#@=`-.?!%*$()[]{}_:+«»§\/" name="delim" id="delimID" size="40" />
+                        </small>
+                        <br />
+                        <small>
+                            <label for="poleID" class="mylabel">Pôle</label>
+                            <input type="text" placeholder="entrez un pôle..." name="pole" id="poleID" size="20" />
+                        </small>
+                        <br />
+                        <small>
+                            <label for="lgID" class="mylabel">Longueur</label>
+                            <input type="text" value="10" name="lg" id="lgID" size="10" />
+                        </small>
+                        <br /><br />
+                        <button onclick="segmentation()"><span>Segmentation</span></button>
+                        <button onclick="dictionnaire()"><span>Dictionnaire</span></button>
+                        <button onclick="alert('Je ne fais rien, changez-moi !')"><span>action 2</span></button>
+                        <button onclick="alert('Je ne fais rien, changez-moi !')"><span>action 3</span></button>
+                        <button onclick="alert('Je ne fais rien, changez-moi !')"><span>action 4</span></button>
+                        <button onclick="alert('Je ne fais rien, changez-moi !')"><span>action 5</span></button>
+                        <button onclick="alert('Je ne fais rien, changez-moi !')"><span>action 6</span></button>
+                    </p>
+            </div>
+                <div id="placeholder" style="width:100%"></div>
+                <br />
+                <div id="Global">
+                    <div id="fileDisplayArea"></div>
+                    <div id="page-analysis"></div>
+                </div>
+        </div>
         <!--Fin page-->
 
         <!--Footer-->

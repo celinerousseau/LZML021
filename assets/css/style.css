@@ -14,10 +14,39 @@ h2 {
   font-size: 60%;
 }
 
-/*Image Ronde Icone*/
-.roundimage {
+/*Image Ronde*/
+.roundoverlaycontainer {
+  position: relative;
+  width: 25%;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.roundoverlaycontainer img {
   border-radius: 50%;
-  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.roundlegend {
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; /*laisser*/
+  background-color: #8fcaca; /*laisser*/
+  display: flex; /*laisser*/
+  align-items: center; /*laisser*/
+  box-sizing: border-box; /*laisser*/
+  text-align: center;
+}
+
+.roundlegend:hover {
+  opacity: 1;
 }
 
 /*Book Display*/
@@ -71,16 +100,16 @@ h2 {
 }
 
 .booktitle {
-  font-size: 99%;
+  font-size: 100%;
   font-weight: bold;
 }
 
 .bookauthor {
-  font-size: 60%;
+  font-size: 99%;
 }
 
 .bookyear {
-  font-size: 50%;
+  font-size: 98%;
 }
 
 /*PAGE*/
@@ -91,59 +120,42 @@ h2 {
 }
 
 /*NAVBAR.HTML*/
-#navbar {
-  overflow: hidden;
+.navbar {
+    width:auto;
+    overflow:hidden;
+    height:40px
 }
 
-#navbar a {
-  float: left;
-  text-align: center;
-  padding: 16px 16px;
-  text-decoration: none;
-  color: black;
+.navbar ul {
+    list-style-type: none;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
 }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
+.navbar li {
+    float: left;
+    background-color: #d4f0f0
 }
 
-.dropdown .dropbtn {
-  font-size: inherit;  
-  border: none;
-  outline: none;
-  padding: 16px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: Trebuchet, sans-serif;
 }
 
-#navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #8fcaca;
+.navbar li a:hover {
+    background-color: #a2e1db;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #d4f0f0;
-  min-width: 160px;
-  z-index: 1;
-}
-
-.dropdown-content a {
-  float: left;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #d4f0f0;
-}
-
-.dropdown:hover .dropdown-content {
-  display: grid;
+.active {
+    background-color: #8fcaca;
 }
 
 .titre {
@@ -166,4 +178,70 @@ h2 {
   background-color: white;
   text-align: center;
   border: 5px solid #8fcaca;
+}
+
+/*Readerfile*/
+.mylabel {
+	background-color: #8fcaca;
+	font-family: arial,helvetica,sans-serif;
+	font-variant: small-caps;
+	font-size: 90%;
+	padding: 2px;
+}
+
+#logger {
+  width:100%;
+}
+
+.logger {
+  float:none;
+  display: inline-block;
+	margin: auto;
+}
+
+.infolog {
+	text-align:center;
+  border: 2pt solid #cce2cb;
+	padding: 2pt;
+	background-color: #cce2cb;
+}
+
+.errorlog {
+	text-align:center;
+	border: 2pt solid #ffc5bf;
+	padding: 2pt;
+	background-color: #ffc5bf;
+}
+
+#outils {
+	background: #d4f0f0;
+	box-shadow: 10px 10px 20px -7px #8fcaca;
+  width: auto;
+  padding: 50px;
+  margin: 30px;
+  border-radius: 25px;
+}
+
+#Global {
+	margin-right: auto; 
+	margin-left: auto;
+  margin-top: 10px;
+  margin-bottom: auto;
+	width: 100%; 
+	border: 3px; 
+	display:table;
+}
+#Global #fileDisplayArea {
+	float:left;
+	width:48%;
+	background: #FFF;
+	font-size:0.6em;
+	height:200px;
+	overflow:scroll;
+}
+#Global #page-analysis {
+	margin-left:52%;
+	background: #FFF;
+	height:200px;
+	overflow:scroll;
 }
