@@ -34,14 +34,16 @@ h2 {
   position: absolute;
   top: 0;
   left: 0;
+  margin: auto;
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out; /*laisser*/
-  background-color: #8fcaca; /*laisser*/
-  display: flex; /*laisser*/
-  align-items: center; /*laisser*/
-  box-sizing: border-box; /*laisser*/
+  transition: opacity 0.5s ease-in-out;
+  background-color: #8fcaca;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: center;
   text-align: center;
 }
 
@@ -121,41 +123,41 @@ h2 {
 
 /*NAVBAR.HTML*/
 .navbar {
-    width:auto;
-    overflow:hidden;
-    height:40px
+  width:auto;
+  overflow:hidden;
+  height:40px
 }
 
 .navbar ul {
-    list-style-type: none;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    display: flex;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar li {
-    float: left;
-    background-color: #d4f0f0
+  float: left;
+  background-color: #d4f0f0
 }
 
 .navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-family: Trebuchet, sans-serif;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: Trebuchet, sans-serif;
 }
 
 .navbar li a:hover {
-    background-color: #a2e1db;
+  background-color: #a2e1db;
 }
 
 .active {
-    background-color: #8fcaca;
+  background-color: #8fcaca;
 }
 
 .titre {

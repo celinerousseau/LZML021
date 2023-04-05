@@ -54,24 +54,26 @@ window.onload = function() {
                 document.getElementById("textlogger").innerHTML = '<span class="textlogger infolog">Fichier chargé avec succès</span>';
             } 
             else {
-                (alert("Type de fichier non supporté. Merci de sélectionner un fichier au format .txt"))
                 document.getElementById("textlogger").innerHTML = '<span class="textlogger errolog">Type de fichier non supporté</span>';
+                (alert("Type de fichier non supporté. Merci de sélectionner un fichier au format .txt"))
             }
         }
        );
     }
 }
 
-//Global variables
+//Variables globales
 var dico = {};
 var totalMots = 0;
 var motsUniques = 0;
 let segmenterPreums = false; //pour vérifier que le texte a bien été segmenté d'abord
+var lignes = [];
 
 //Bouton segmentation
 function segmentation() {
     // Vérifier si l'élément "fileDisplayArea" est vide
-    if (fileDisplayArea.innerText == "") {
+    if (document.getElementById("fileDisplayArea").innerText == "") { // alerte + texte pour être sur que l'utilisateur voit l'erreur
+        document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
         alert("Vous devez sélectionner un texte pour utiliser cette fonctionnalité.");
         return;
     }
@@ -80,6 +82,7 @@ function segmentation() {
         let delim = document.getElementById('delimID').value;
         // Vérifier si la variable "delim" est vide
         if (delim === '') {
+            document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun délimiteurs ajoutés.</span>';
             alert("Ajoutez des délimiteurs.");
             return;
         }
@@ -99,10 +102,16 @@ function segmentation() {
            );
 
             // Séparer le texte en lignes
-            var lignes = document.getElementById('fileDisplayArea'); 
-            lignes = lignes.innerText.split("\n");
+            lignes = document.getElementById("fileDisplayArea").innerText.split("\n");
 
-            // Pour chaque ligne
+            // Vérifier qu'aucune ligne est vide
+            for (let i = lignes.length - 1; i >= 0; i--) { // dans l'ordre inverse parce que sinon vu que l'index change on rate des lignes
+                if (!/\S/.test(lignes[i])) { // si y a pas au moins un espace non-vide
+                    lignes.splice(i, 1); // on enlève la ligne
+                }
+            }
+
+            // Pour chaque ligne non-vide
             lignes.forEach((ligne) => {
                 mots = ligne.split(regex_delim); // Séparer chaques lignes en mots
                 mots.forEach((mot) => {
@@ -119,7 +128,7 @@ function segmentation() {
                 });
             });
 
-            let fileDisplayArea = document.getElementById("fileDisplayArea").innerText;
+            let fileDisplayArea = document.getElementById("fileDisplayArea").innerText; //on utilise pas var texte ici pour pas créer d'interférence
             let display = document.getElementById("page-analysis");
             let tokens = fileDisplayArea.split(regex_delim);
             tokens = tokens.filter(x => x.trim() != '');
@@ -134,10 +143,9 @@ function segmentation() {
 
 //Bouton Dictionnaire
 function dictionnaire() {
-    // Variable pour fileDisplayArea
-    let texte = document.getElementById("fileDisplayArea");
     // Vérifier si l'élément "fileDisplayArea" est vide
-    if (texte.innerText == "") {
+    if (document.getElementById("fileDisplayArea").innerText == "") {
+        document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
         alert("Vous devez sélectionner un texte pour utiliser cette fonctionnalité.");
         return;
     }
@@ -165,30 +173,53 @@ function dictionnaire() {
             document.getElementById('page-analysis').innerHTML = tableau;
         }
         else { //si le texte pas segmenté
+            document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Texte non segmenté.</span>';
             alert("Vous devez segmentez le texte avant de pouvoir utiliser cette fonctionnalité !");
         }
     }
 }
 
-//action2
-function action2() {
-    // Variable pour fileDisplayArea
-    let texte = document.getElementById("fileDisplayArea");
+//Bouton Grep
+function grep() {
     // Vérifier si l'élément "fileDisplayArea" est vide
-    if (texte.innerText == "") {
+    if (document.getElementById("fileDisplayArea").innerText == "") {
+        document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
         alert("Vous devez sélectionner un texte pour utiliser cette fonctionnalité.");
         return;
     }
-    else {
+    else { // Vérifier qu'un pôle a bien été entré
+        let pole = document.getElementById("poleID").value; //value pour savoir ce que utilisateur a entré dans input poleID
+        let poleRegex = new RegExp(pole, "g");
+        if (pole == "") {
+            document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun pôle ajouté.</span>';
+            alert("Vous devez ajouter un pôle pour utiliser cette fonctionnalité.");
+            return;
+        }
+        else {
+            document.getElementById("textlogger").innerHTML = ''; //vider le error log au cas où
+            var resultats = [];
+            for (var i = 0; i < lignes.length; i++) { // tant que i est inférieur au nombre de lignes fait ce qui suit et incrémente i de 1
+                if (poleRegex.test(lignes[i])) { //si dans la ligne i y a le pole recherché
+                    let lePrecieux = lignes[i].replace(poleRegex, '<span style="color:#8fcaca; font-weight:bold">$&</span>');
+                    resultats.push(lePrecieux);
+                }
+            }
+            if (resultats.length > 0) { // si + de 0 résultats
+                document.getElementById("page-analysis").innerHTML = resultats.join("<br>");
+            }
+            else {
+                document.getElementById("page-analysis").innerHTML = ''; // vider les analyses puisque rien n'a été trouvé
+                document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun résultat trouvé.</span>';
+            }
+        }
     }
 }
 
 //action3
 function action3() {
-    // Variable pour fileDisplayArea
-    let texte = document.getElementById("fileDisplayArea");
     // Vérifier si l'élément "fileDisplayArea" est vide
-    if (texte.innerText == "") {
+    if (document.getElementById("fileDisplayArea").innerText == "") {
+        document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
         alert("Vous devez sélectionner un texte pour utiliser cette fonctionnalité.");
         return;
     }
@@ -198,10 +229,9 @@ function action3() {
 
 //action4
 function action4() {
-    // Variable pour fileDisplayArea
-    let texte = document.getElementById("fileDisplayArea");
     // Vérifier si l'élément "fileDisplayArea" est vide
-    if (texte.innerText == "") {
+    if (document.getElementById("fileDisplayArea").innerText == "") {
+        document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
         alert("Vous devez sélectionner un texte pour utiliser cette fonctionnalité.");
         return;
     }
@@ -211,10 +241,9 @@ function action4() {
 
 //action5
 function action5() {
-    // Variable pour fileDisplayArea
-    let texte = document.getElementById("fileDisplayArea");
     // Vérifier si l'élément "fileDisplayArea" est vide
-    if (texte.innerText == "") {
+    if (document.getElementById("fileDisplayArea").innerText == "") {
+        document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
         alert("Vous devez sélectionner un texte pour utiliser cette fonctionnalité.");
         return;
     }
@@ -224,10 +253,9 @@ function action5() {
 
 //action6
 function action6() {
-    // Variable pour fileDisplayArea
-    let texte = document.getElementById("fileDisplayArea");
     // Vérifier si l'élément "fileDisplayArea" est vide
-    if (texte.innerText == "") {
+    if (document.getElementById("fileDisplayArea").innerText == "") {
+        document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
         alert("Vous devez sélectionner un texte pour utiliser cette fonctionnalité.");
         return;
     }
