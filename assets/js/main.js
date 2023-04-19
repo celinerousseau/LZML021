@@ -277,32 +277,43 @@ function concordancier() {
     }
 }
 
-//action4
-function action4() {
+//Bouton A1Z26
+function A1Z26() {
+    let texte = document.getElementById("fileDisplayArea").innerText
     // Vérifier si l'élément "fileDisplayArea" est vide
-    if (document.getElementById("fileDisplayArea").innerText == "") {
+    if (texte == "") {
         document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
         alert("Vous devez sélectionner un texte pour utiliser cette fonctionnalité.");
         return;
     }
     else {
+          // On enlève tous les symboles, on remplace les lettres à accents et on mets tout en majuscule
+        document.getElementById('page-analysis').innerHTML = "";
+        let nettoyer = texte.normalize('NFD').replace(/[^a-zA-Z]/g, '').toUpperCase();
+        
+        let resultat = '';
+        
+        // Pour chaque lettre dans nettoyer
+        for (let i = 0; i < nettoyer.length; i++) {
+            // On convertit en code A1Z26 (A = 1, B = 2, C = 3, etc)
+            let code = nettoyer.charCodeAt(i) - 64;
+            
+            // On ajoute à résultat
+            resultat += code.toString() + ' ';
+        }
+
+        //On affiche le résultat dans page-analysis
+        document.getElementById('page-analysis').innerHTML = resultat;
     }
 }
 
-//action5
-function action5() {
-    // Vérifier si l'élément "fileDisplayArea" est vide
-    if (document.getElementById("fileDisplayArea").innerText == "") {
-        document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
-        alert("Vous devez sélectionner un texte pour utiliser cette fonctionnalité.");
-        return;
-    }
-    else {
-    }
+//Bouton Minuscule
+function minuscule() {
+    document.getElementById("page-analysis").innerText = document.getElementById("page-analysis").innerText.toLowerCase();
 }
 
-//action6
-function action6() {
+//Bouton Télécharger
+function telecharger() {
     // Vérifier si l'élément "fileDisplayArea" est vide
     if (document.getElementById("fileDisplayArea").innerText == "") {
         document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
@@ -310,5 +321,21 @@ function action6() {
         return;
     }
     else {
+        if (document.getElementById("page-analysis").innerText == "") {
+            document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte analysé.</span>';
+            alert("La boîte de droite doit contenir du texte pour utiliser cette fonctionnalité.");
+            return;
+        }
+        else {
+            let texte = document.getElementById("page-analysis").innerText;
+            let nomDoc = "anlysedetexte.txt";
+            let element = document.createElement("a");
+            element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(texte));
+            element.setAttribute("download", nomDoc);
+            element.style.display = "none";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
     }
 }
