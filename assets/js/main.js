@@ -68,6 +68,7 @@ var totalMots = 0;
 var motsUniques = 0;
 let segmenterPreums = false; //pour vérifier que le texte a bien été segmenté d'abord
 var lignes = [];
+let text_tokens = [];
 
 //Bouton segmentation
 function segmentation() {
@@ -100,6 +101,10 @@ function segmentation() {
                 + "\\s" // on ajoute tous les symboles d'espacement (retour à la ligne, etc)
                 + "]+" // on ajoute le + au cas où plusieurs délimiteurs sont présents : évite les tokens vides
            );
+
+            //création de text_tokens pour collecter les mots nettoyés
+            let tokens_tmp = document.getElementById("fileDisplayArea").innerText.split(regex_delim);
+            text_tokens = tokens_tmp.filter(x => x.trim() != ''); // on s'assure de ne garder que des tokens "non vides"
 
             // Séparer le texte en lignes
             lignes = document.getElementById("fileDisplayArea").innerText.split("\n");
@@ -215,15 +220,60 @@ function grep() {
     }
 }
 
-//action3
-function action3() {
-    // Vérifier si l'élément "fileDisplayArea" est vide
+//Bouton Concordancier
+function concordancier() {
     if (document.getElementById("fileDisplayArea").innerText == "") {
         document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun texte sélectionné.</span>';
         alert("Vous devez sélectionner un texte pour utiliser cette fonctionnalité.");
         return;
     }
     else {
+        let pole = document.getElementById("poleID").value.trim();
+        let display = document.getElementById("page-analysis");
+        let table = document.createElement("table");
+
+        if (pole == "") {
+            document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Aucun pôle ajouté.</span>';
+            alert("Vous devez ajouter un pôle pour utiliser cette fonctionnalité.");
+            return;
+        } 
+        else {
+            let pole_regex = new RegExp("^" + pole + "$", "g");
+            let tailleContexte = Number(document.getElementById('lgID').value ?? "10");
+            table.style.margin = "auto";
+            let entete = table.appendChild(document.createElement("tr"));
+            entete.innerHTML = "<th>contexte gauche</th><th>pôle</th><th>contexte droit</th>";
+
+            display.innerHTML = "";
+            for (let i=0; i < text_tokens.length; i++) {
+                if (text_tokens[i].search(pole_regex) != -1) {
+                    let start = Math.max(i - tailleContexte, 0);
+                    let end = Math.min(i + tailleContexte, text_tokens.length);
+                    let lc = text_tokens.slice(start, i);
+                    let rc = text_tokens.slice(i+1, end+1);
+                    let row = document.createElement("tr");
+
+                    // manière fainéante
+                    row.appendChild(document.createElement("td"));
+                    row.childNodes[row.childNodes.length - 1].innerHTML = lc.join(' ');
+                    row.appendChild(document.createElement("td"));
+                    row.childNodes[row.childNodes.length - 1].innerHTML = text_tokens[i];
+                    row.appendChild(document.createElement("td"));
+                    row.childNodes[row.childNodes.length - 1].innerHTML = rc.join(' ');
+                    table.appendChild(row);
+                }
+            }
+        }
+        
+        display.innerHTML = "";
+        display.appendChild(table);
+
+        if (display.innerHTML == "") {
+            document.getElementById("textlogger").innerHTML = '<span class="textlogger errorlog">Pas de résultat.</span>';
+            alert("Pas de résultat.");
+            return;
+        }
+
     }
 }
 
